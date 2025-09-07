@@ -1,0 +1,21 @@
+1 3 5
+01 10 23
+02 18 05
+Plugboard:
+AB
+CD
+EF
+Reflector:
+AY
+BR
+CU
+DH
+EQ
+FS
+GL
+IP
+JX
+KN
+MO
+TZ
+VW
