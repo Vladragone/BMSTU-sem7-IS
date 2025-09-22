@@ -1,5 +1,5 @@
-import string
-ALPHABET = string.ascii_uppercase
+ALPHABET = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"
+
 class Reflector:
     def __init__(self, pairs=None):
         self.mapping = {}
@@ -12,5 +12,6 @@ class Reflector:
                     if a in ALPHABET and b in ALPHABET:
                         self.mapping[a] = b
                         self.mapping[b] = a
+
     def reflect(self, c):
         return self.mapping.get(c.upper(), c)

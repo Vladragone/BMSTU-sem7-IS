@@ -1,20 +1,19 @@
 from rotor import Rotor
 from reflector import Reflector
 from plugboard import Plugboard
-import string
 
-ALPHABET = string.ascii_uppercase
+ALPHABET = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"
 
 ROTOR_WIRINGS = {
-    "1": ("EKMFLGDQVZNTOWYHXUSPAIBRCJ", "Q"),
-    "2": ("AJDKSIRUXBLHWTMCQGZNPYFVOE", "E"),
-    "3": ("BDFHJLCPRTXVZNYEIWGAKMUSQO", "V"),
-    "4": ("ESOVPZJAYQUIRHXLNFTGKDCMWB", "J"),
-    "5": ("VZBRGITYUPSDNHLXAWMJQOFECK", "Z")
+    "1": ("БВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯА", "Я"),
+    "2": ("ВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯАБ", "Ю"),
+    "3": ("ГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯАБВ", "Э"),
+    "4": ("ДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯАБВГ", "Ы"),
+    "5": ("ЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯАБВГД", "Ш"),
 }
 
 def read_settings(filename):
-    with open(filename, "r") as f:
+    with open(filename, "r", encoding="utf-8") as f:
         lines = [line.strip() for line in f if line.strip()]
     rotor_types = lines[0].split()
     positions = [int(x) for x in lines[1].split()]
@@ -63,9 +62,9 @@ def encode_message(message, rotors, plugboard, reflector):
 if __name__ == "__main__":
     rotor_types, positions, ring_settings, plugboard_pairs, reflector_pairs = read_settings("settings.txt")
     rotors, plugboard, reflector = build_machine(rotor_types, positions, ring_settings, plugboard_pairs, reflector_pairs)
-    with open("message.txt", "r") as f:
+    with open("message.txt", "r", encoding="utf-8") as f:
         message = f.read()
     result = encode_message(message, rotors, plugboard, reflector)
-    with open("result.txt", "w") as f:
+    with open("result.txt", "w", encoding="utf-8") as f:
         f.write(result)
     print("Сообщение зашифровано.")
